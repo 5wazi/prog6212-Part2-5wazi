@@ -66,15 +66,18 @@
                     <span asp-validation-for="Notes" class="text-danger"></span>
                 </div>
                 <div class="mb-4">
+                    @if (ViewBag.UploadError != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.UploadError
+                        </div>
+                    }
                     <label asp-for="Documents" class="form-label fw-semibold">Supporting Documents</label>
                     <input type="file" name="files" id="files" class="form-control" multiple />
-                    <small class="text-muted">Accepted formats: PDF, DOCX, JPG, PNG</small>
+                    <small class="text-muted">Accepted formats: PDF, DOCX, XLSX. Max size per file: 20MB</small>
+                    <div id="fileErrors" class="text-danger mt-1"></div>
                 </div>
-                <div class="d-flex justify-content-end gap-3">
-                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                    <!--<button type="submit">Test Redirect</button>-->
-                    <button type="submit" class="btn btn-primary">Submit Claim</button>
-                </div>
+
             </form>
         </div>
     </div>
@@ -95,6 +98,36 @@
             const rate = parseFloat(rateInput.value) || 0;
             totalInput.value = (hours * rate);
         }
+            // Client-side file validation
+        const fileInput = document.getElementById("files");
+        const fileErrorsDiv = document.getElementById("fileErrors");
+        const maxFileSize = 20 * 1024 * 1024; // 20 MB
+        const allowedExtensions = [".pdf", ".docx", ".xlsx"];
+
+        fileInput.addEventListener("change", function () {
+            const files = fileInput.files;
+            let errors = [];
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const ext = "." + file.name.split('.').pop().toLowerCase();
+
+                if (!allowedExtensions.includes(ext)) {
+                    errors.push(`${file.name} - invalid type`);
+                }
+
+                if (file.size > maxFileSize) {
+                    errors.push(`${file.name} - exceeds 20MB`);
+                }
+            }
+
+            if (errors.length > 0) {
+                fileErrorsDiv.innerHTML = errors.join("<br>");
+                fileInput.value = ""; // clear invalid files
+            } else {
+                fileErrorsDiv.innerHTML = ""; // clear errors
+            }
+        });
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

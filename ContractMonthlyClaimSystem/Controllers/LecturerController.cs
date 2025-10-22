@@ -63,7 +63,8 @@ namespace ContractMonthlyClaimSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddClaim(Claim claim, List<IFormFile>? files)
         {
-            Console.WriteLine("Form posted!");
+            //Console.WriteLine("Form posted!");
+
             if (!ModelState.IsValid)
             {
                 Console.WriteLine("Invalid model");
@@ -86,39 +87,71 @@ namespace ContractMonthlyClaimSystem.Controllers
             _context.Claims.Add(claim);
             _context.SaveChanges();
 
-            //Handle file uploads 
+            // Handle file uploads
             if (files != null && files.Count > 0)
             {
-                Console.WriteLine($"Files uploaded: {files.Count}");
                 string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-
                 if (!Directory.Exists(uploadPath))
                     Directory.CreateDirectory(uploadPath);
 
+                List<string> failedFiles = new List<string>();
+                var allowedExtensions = new[] { ".pdf", ".docx", ".xlsx" };
+                const long maxFileSize = 20 * 1024 * 1024; // 20 MB
+
                 foreach (var file in files)
                 {
-                    if (file.Length > 0)
+                    try
                     {
-                        string filePath = Path.Combine(uploadPath, file.FileName);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        if (file.Length > 0)
                         {
-                            file.CopyTo(stream);
-                        }
+                            var ext = Path.GetExtension(file.FileName)?.ToLower();
 
-                        _context.Documents.Add(new Document
-                        {
-                            ClaimID = claim.ClaimID,
-                            FileName = file.FileName,
-                            UploadDate = DateTime.Now
-                        });
+                            // Validate file type
+                            if (!allowedExtensions.Contains(ext))
+                            {
+                                failedFiles.Add($"{file.FileName} (Invalid type)");
+                                continue;
+                            }
+
+                            // Validate file size
+                            if (file.Length > maxFileSize)
+                            {
+                                failedFiles.Add($"{file.FileName} (Exceeds 20MB)");
+                                continue;
+                            }
+
+                            // Save file
+                            string filePath = Path.Combine(uploadPath, file.FileName);
+                            using var stream = new FileStream(filePath, FileMode.Create);
+                            file.CopyTo(stream);
+
+                            // Add to DB
+                            _context.Documents.Add(new Document
+                            {
+                                ClaimID = claim.ClaimID,
+                                FileName = file.FileName,
+                                UploadDate = DateTime.Now
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to upload {file.FileName}: {ex.Message}");
+                        failedFiles.Add($"{file.FileName} (Error during upload)");
                     }
                 }
 
                 _context.SaveChanges();
+
+                if (failedFiles.Any())
+                {
+                    ViewBag.UploadError = "The following files could not be uploaded: " + string.Join(", ", failedFiles);
+                    return View(claim);
+                }
             }
             else
             {
-                Console.WriteLine("⚠️ No files were uploaded!");
+                ViewBag.UploadError = "No files were uploaded.";
             }
 
             return RedirectToAction("Dashboard");
