@@ -772,13 +772,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\Claim Supporting Document1.pdf'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"bcff6pxix1"},{"Name":"integrity","Value":"sha256-lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc="},{"Name":"label","Value":"_content/ContractMonthlyClaimSystem/uploads/Claim Supporting Document1.pdf"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15556"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Oct 2025 13:44:17 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15556"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Oct 2025 16:36:42 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ContractMonthlyClaimSystem/uploads/Claim Supporting Document1.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\Claim Supporting Document1.pdf'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15556"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Oct 2025 13:44:17 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15556"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022lar63c9e2fythlcqTCc5KkXVFa91Vyj4rmBLv7005Wc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Oct 2025 16:36:42 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

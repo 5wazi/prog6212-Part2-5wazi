@@ -134,11 +134,24 @@ namespace ContractMonthlyClaimSystem.Controllers
         public IActionResult ViewClaim(int id)
         {
             var claim = _context.Claims
-                                .Include(c => c.Documents)
-                                .FirstOrDefault(c => c.ClaimID == id);
+                .Where(c => c.ClaimID == id)
+                .Select(c => new Claim
+                {
+                    ClaimID = c.ClaimID,
+                    SubmissionDate = c.SubmissionDate,
+                    HoursWorked = c.HoursWorked,
+                    HourlyRate = c.HourlyRate,
+                    Total = c.Total,
+                    ClaimStatus = c.ClaimStatus,
+                    Notes = c.Notes,
+                    Documents = c.Documents
+                })
+                .FirstOrDefault();
 
             if (claim == null)
+            {
                 return NotFound();
+            }
 
             return View(claim);
         }
