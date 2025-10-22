@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ContractMonthlyClaimSystem",
+    "\\ContractMonthlyClaimSystem\\bin",
+    "\\ContractMonthlyClaimSystem\\bin\\Debug",
+    "\\ContractMonthlyClaimSystem\\bin\\Release",
+    "\\ContractMonthlyClaimSystem\\Controllers",
+    "\\ContractMonthlyClaimSystem\\Data",
+    "\\ContractMonthlyClaimSystem\\Migrations",
+    "\\ContractMonthlyClaimSystem\\Models",
+    "\\ContractMonthlyClaimSystem\\Views"
   ],
-  "SelectedNode": "\\C:\\Users\\samke\\Source\\Repos\\prog6212-Part2-5wazi",
   "PreviewInSolutionExplorer": false
 }
