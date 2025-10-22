@@ -39,6 +39,7 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
             var pendingClaims = await _context.Claims
                 .Include(c => c.User)
+                .Include(c => c.Documents)
                 .Where(c => c.ClaimStatus == "Verified")
                 .OrderByDescending(c => c.SubmissionDate)
                 .ToListAsync();

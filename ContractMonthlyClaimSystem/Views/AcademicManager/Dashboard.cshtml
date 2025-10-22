@@ -98,7 +98,7 @@
                     <p class="text-muted">
                         Access a complete, audit-compliant history of claims, including approvals, rejections, and manager feedback.
                     </p>
-                    <button class="btn btn-outline-primary">View All Records</button>
+                    <a href="@Url.Action("FeatureComingSoon", "Home", new { featureName = "View All Records", userRole = "AcademicManager" })" class="btn btn-outline-primary">View All Records</a>
                 </div>
             </div>
         </div>
@@ -111,7 +111,7 @@
                     <p class="text-muted">
                         Track all actions taken by coordinators and academic managers to ensure full transparency.
                     </p>
-                    <button class="btn btn-outline-primary">Access Audit Trail</button>
+                    <a href="@Url.Action("FeatureComingSoon", "Home", new { featureName = "Access Audit Trail", userRole = "AcademicManager" })" class="btn btn-outline-primary">Access Audit Trail</a>
                 </div>
             </div>
         </div>

@@ -8,8 +8,12 @@
     <h4 class="fw-bold mb-0">Claim #112 – Final Approval</h4>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Manager Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#">Claims</a></li>
+            <li class="breadcrumb-item">
+                <a asp-controller="AcademicManager" asp-action="Dashboard">Manager Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="AcademicManager" asp-action="Claims">Claims</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Claim Details</li>
         </ol>
     </nav>
@@ -64,7 +68,7 @@
         <div class="d-flex gap-2 flex-wrap">
             <button class="btn btn-success px-4">Approve Claim</button>
             <button class="btn btn-danger px-4">Reject Claim</button>
-            <a href="/Manager/PendingClaims" class="btn btn-outline-secondary px-4">Back to Pending Claims</a>
+            <a asp-controller="AcademicManager" asp-action="Claims" class="btn btn-outline-secondary px-4">Back to Pending Claims</a>
         </div>
     </div>
 </div>
