@@ -99,7 +99,6 @@
                                 <td>@(claim.Documents?.Count ?? 0) Files</td>
                                 <td>
                                     <a asp-controller="Lecturer" asp-action="ViewClaim" asp-route-id="@claim.ClaimID" class="btn btn-sm btn-outline-primary">View Details</a>
-                                    <a asp-controller="Lecturer" asp-action="DownloadClaim" asp-route-id="@claim.ClaimID" class="btn btn-sm btn-outline-secondary">Download</a>
                                 </td>
                             </tr>
                         }

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System;
 
 namespace ContractMonthlyClaimSystem.Models
@@ -9,16 +9,16 @@ namespace ContractMonthlyClaimSystem.Models
         [Key]
         public int DocumentID { get; set; }
 
-        [Required, ForeignKey("Claim")]
-        public int ClaimID { get; set; }
+        [Required]
+        public int ClaimID { get; set; } // Foreign key
+
+        [ForeignKey(nameof(ClaimID))]
+        public Claim? Claim { get; set; } // Navigation property
 
         [Required]
         public string? FileName { get; set; }
 
         [Required]
         public DateTime UploadDate { get; set; }
-
-        // Navigation Property
-        public Claim? Claim { get; set; }
     }
 }

@@ -65,6 +65,7 @@ namespace ContractMonthlyClaimSystem.Controllers
             // Example: load claims that are submitted and need verification
             var claims = _context.Claims
                                  .Include(c => c.User)
+                                 .Include(c => c.Documents)
                                  .Where(c => c.ClaimStatus == "Submitted" || c.ClaimStatus == "Pending")
                                  .OrderByDescending(c => c.SubmissionDate)
                                  .ToList();

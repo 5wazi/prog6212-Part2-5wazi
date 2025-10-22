@@ -55,7 +55,7 @@ namespace ContractMonthlyClaimSystem.Data
             // 🔹 Document → Claim
             modelBuilder.Entity<Document>()
                 .HasOne(d => d.Claim)
-                .WithMany()
+                .WithMany(c => c.Documents)
                 .HasForeignKey(d => d.ClaimID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
