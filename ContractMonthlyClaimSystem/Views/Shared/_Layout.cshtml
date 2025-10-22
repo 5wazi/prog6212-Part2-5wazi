@@ -75,12 +75,25 @@
         </div>
     </footer>
     <script>
-        // Handle role selection
         const roleOptions = document.querySelectorAll('.role-option');
+        const roleDropdownBtn = document.getElementById('userRoleDropdown');
+
+        // Load previously selected role from localStorage
+        const savedRole = localStorage.getItem('selectedRole');
+        if (savedRole) {
+            roleDropdownBtn.textContent = `User: ${savedRole}`;
+        }
+
         roleOptions.forEach(option => {
             option.addEventListener('click', (e) => {
                 e.preventDefault();
                 const role = option.dataset.role;
+
+                // Save selected role in localStorage
+                localStorage.setItem('selectedRole', role);
+
+                // Update the dropdown button text
+                roleDropdownBtn.textContent = `User: ${role}`;
 
                 // Redirect to the dashboard of the selected role
                 switch(role) {
@@ -102,6 +115,7 @@
             window.location.href = '@Url.Action("Login", "Home")';
         });
     </script>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
